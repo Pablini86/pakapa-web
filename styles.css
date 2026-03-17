@@ -529,8 +529,7 @@ img { display: block; max-width: 100%; }
 .partner-card img {
   height: 70px;
   width: auto;
-  opacity: .85;
-  filter: brightness(0) invert(1);
+  opacity: .9;
   transition: opacity .2s;
 }
 .partner-card:hover img { opacity: 1; }
