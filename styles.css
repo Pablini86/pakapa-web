@@ -57,9 +57,9 @@ body::after {
   inset: 0;
   z-index: 999;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
-  background-size: 300px 300px;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
   background-repeat: repeat;
 }
 
@@ -529,7 +529,8 @@ img { display: block; max-width: 100%; }
 .partner-card img {
   height: 70px;
   width: auto;
-  opacity: .9;
+  opacity: .85;
+  filter: brightness(0) invert(1);
   transition: opacity .2s;
 }
 .partner-card:hover img { opacity: 1; }
@@ -742,3 +743,85 @@ img { display: block; max-width: 100%; }
 .process__step:nth-child(3).animate-in { transition-delay: .1s; }
 .process__step:nth-child(5).animate-in { transition-delay: .2s; }
 .process__step:nth-child(7).animate-in { transition-delay: .3s; }
+
+/* =============================================
+   GALERÍA TORNEO
+   ============================================= */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.gallery-day {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color .25s, transform .25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-day::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--aqua), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.gallery-day:hover {
+  border-color: var(--aqua-dim);
+  transform: translateY(-3px);
+}
+
+.gallery-day:hover::before { opacity: 1; }
+.gallery-day:hover .gallery-day__arrow { color: var(--aqua); transform: translate(3px, -3px); }
+
+.gallery-day__num {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--aqua);
+  opacity: .2;
+  min-width: 54px;
+}
+
+.gallery-day__info { flex: 1; }
+
+.gallery-day__info h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.gallery-day__info p {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.gallery-day__arrow {
+  color: var(--text-3);
+  flex-shrink: 0;
+  transition: color .2s, transform .2s;
+}
+
+@media(max-width: 900px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 600px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
